@@ -1,16 +1,3 @@
-/*
-
-HOMEWORK 7
-
-Name: Madie Tong
-
-Email: mtong1@olin.edu
-
-Remarks:
-
-*/
-
-
 package main
 
 import (
@@ -140,36 +127,6 @@ func (g *Graph) HelpEdge(curr *Edges, e *Edges, target int) {
 		return
 	}
 	g.HelpEdge(curr.next, e, target)
-}
-
-func BFS(g *Graph, start int, names []string) {
-	q := NewDEQueue()
-	dist := NewDEQueue()
-	color := make([]int, g.vertices)			// array of size graph 
-
-	color[start] = 1 							// color = red 
-
-	q.EnqueueFront(start)
-	dist.EnqueueFront(0)
-
-	for q.IsEmpty() == false {					// as long as the queue isnt empty
-		v := q.DequeueBack()
-		d := dist.DequeueBack()
-		color[v] = 2							// green
-	
-		fmt.Printf("Visiting %20s distance %d from %s\n", names[v], d, names[start])
-		vertex := g.edges[v]
-
-		for vertex != nil {						// add vertex's links to queue
-			if color[vertex.target] == 0 {
-				color[vertex.target] = 1		// red 
-				q.EnqueueFront(vertex.target)	// enqueue
-				dist.EnqueueFront(d + 1)
-				
-			} 
-			vertex = vertex.next
-		}
-	}
 }
 
 func DFS(g *Graph, start int, names []string) {
